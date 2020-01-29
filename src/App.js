@@ -7,13 +7,13 @@ import SignInSignUp from './pages/sign-in-sign-up/sign-in-sign-up';
 import { auth, createUserProfileDocument } from './firebase/firebase.util';
 import './App.css';
 
-class App  extends Component {
+class App extends Component {
   constructor() {
     super();
 
     this.state = {
       currentUser: null
-    }
+    };
   }
 
   unSubscribeFromAuth = null;
@@ -29,26 +29,25 @@ class App  extends Component {
               id: snapshot.id,
               ...snapshot.data()
             }
-          })
-          console.log(this.state);
-        })
+          });
+        });
       }
       this.setState({ currentUser: userAuth });
-    })
+    });
   }
 
   componentWillUnmount() {
     this.unSubscribeFromAuth();
-  };
+  }
 
   render() {
     return (
       <div className="App">
-        <Header currentUser={this.state.currentUser}/>
+        <Header currentUser={this.state.currentUser} />
         <Switch>
-          <Route exact path='/' component={Homepage} />
-          <Route exact path='/shop' component={ShopPage} />
-          <Route exact path='/signin' component={SignInSignUp} />
+          <Route exact path="/" component={Homepage} />
+          <Route exact path="/shop" component={ShopPage} />
+          <Route exact path="/signin" component={SignInSignUp} />
         </Switch>
       </div>
     );
